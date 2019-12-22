@@ -12,7 +12,6 @@ RUN apk update \
 ONBUILD COPY package.json ${APP_ROOT}/
 ONBUILD COPY yarn.lock ${APP_ROOT}/
 
-ONBUILD RUN npm ci \
-  && npm cache clean --force
+ONBUILD RUN yarn install --frozen-lockfile --ignore-optional
 
 CMD ["yarn", "start"]
